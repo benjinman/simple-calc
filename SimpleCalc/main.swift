@@ -8,8 +8,6 @@
 
 import Foundation;
 
-var result: Int = 0;
-
 func add(a: Int, b: Int) -> Int {
     return a + b;
 }
@@ -50,20 +48,26 @@ func fact(num: Int) -> Int {
     return num * fact(num: (num - 1));
 }
 
+var result: Int = 0;
+
+print("Enter an expression separated by returns:");
+
 let input = readLine(strippingNewline: true)!;
 let line = String.init(input)!;
 
 if (line.contains("count") || line.contains("avg") || line.contains("fact")) {
     let nums : [String] = line.characters.split(separator: " ").map(String.init);
+    
     var numbers : [Int] = [];
     for i in 0...nums.count - 2 {
         numbers.append(Int(nums[i])!);
     }
+    
     if (line.contains("count")) {
         result = count(nums: numbers);
     } else if (line.contains("avg")) {
         result = avg(nums: numbers);
-    } else {
+    } else if (line.contains("fact")) {
         result = fact(num: numbers[0]);
     }
 } else {
@@ -74,6 +78,7 @@ if (line.contains("count") || line.contains("avg") || line.contains("fact")) {
     
     let secondNum = readLine(strippingNewline: true)!;
     let num2 = Int.init(secondNum)!;
+    
     if (op == "+") {
         result = add(a: num, b: num2);
     } else if (op == "-") {
